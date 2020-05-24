@@ -26,13 +26,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="paciente/listar">
+                <a class="nav-link " href="paciente/listar">
                   <span data-feather="file"></span>
                   Pacientes
                 </a>
               </li>
             <li class="nav-item">
-                <a class="nav-link" href="doctor/listar">
+                <a class="nav-link active" href="doctor/listar">
                   <span data-feather="shopping-cart"></span>
                   Doctores
                 </a>
@@ -55,10 +55,10 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Pacientes</h1>
+            <h1 class="h2">Doctores</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
-                <button class="btn btn-success" (click)="agregarPaciente()">Crear</button>
+                <button class="btn btn-success" (click)="agregarDoctor()">Crear</button>
               </div>
             </div>
           </div>
@@ -70,18 +70,16 @@
                 <th>Id</th>
                 <th>nombre</th>
                 <th>Telefono</th>
-                <th>EPS</th>    
                 <th>OPCIONES</th>        
       </tr>
               </thead>
               <tbody>
-               <tr *ngFor="let paciente of pacientes">
-        <td>{{paciente.id}}</td>
-        <td>{{paciente.nombre}}</td>
-        <td>{{paciente.telefono}}</td>
-        <td>{{paciente.eps}}</td>
-        <td><button class="btn btn-success" (click)="eliminar(paciente)"> Delete</button>
-          <button class="btn btn-success" (click)="editar(paciente)" style="margin-left: 20px;"> Edit</button></td>
+               <tr *ngFor="let doctor of doctores">
+        <td>{{doctor.id}}</td>
+        <td>{{doctor.nombre}}</td>
+        <td>{{doctor.telefono}}</td>
+        <td><button class="btn btn-success" (click)="eliminar(doctor)"> Delete</button>
+          <button class="btn btn-success" (click)="editar(doctor)" style="margin-left: 20px;"> Edit</button></td>
       </tr>
               </tbody>
             </table>

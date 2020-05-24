@@ -1,22 +1,114 @@
-<div class="col-md-6 user-container">
-    <h2 class="text-center">Editar Paciente</h2>
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="dashboard/">SoftBiokernel</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Cerra Sesion</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link " href="dashboard/">
+                  <span data-feather="home"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Hospital
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="paciente/listar">
+                  <span data-feather="file"></span>
+                  Pacientes
+                </a>
+              </li>
+             <li class="nav-item">
+                <a class="nav-link" href="doctor/listar">
+                  <span data-feather="shopping-cart"></span>
+                  Doctores
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  EPS
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Triage
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Editar Paciente # {{paciente}} </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-success" (click)="regresar()">Regresar</button>
+              </div>
+            </div>
+          </div>
+
+         <div class="col-md-6 user-container">
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" method="POST">
-        <div class="invisible">
-            <input type="text" formControlName="id" placeholder="id" name="id" class="form-control" id="id">
-        </div>
-        <div class="form-group">
-            <label for="username">Nombre:</label>
-            <input type="text" formControlName="nombre" placeholder="nombre" name="nombre" class="form-control"
-                id="nombre">
-        </div>
+      <div class="form-group">
+        <label for="username">Primer Nombre:</label>
+        <input type="text" formControlName="primer_nombre" placeholder="Primer Nombre" name="primer_nombre" class="form-control" id="primer_nombre">
+      </div>
+   <div class="form-group">
+        <label for="username">Segundo Nombre:</label>
+        <input type="text" formControlName="segundo_nombre" placeholder="Segundo Nombre" name="segundo_nombre" class="form-control" id="segundo_nombre">
+      </div>
+       <div class="form-group">
+        <label for="username">Primer Apellido:</label>
+        <input type="text" formControlName="primer_apellido" placeholder="Primer Apellido" name="primer_apellido" class="form-control" id="primer_apellido">
+      </div>
+       <div class="form-group">
+        <label for="username">Segundo  Apellido:</label>
+        <input type="text" formControlName="segundo_apellido" placeholder="Segundo Apellido" name="segundo_apellido" class="form-control" id="segundo_apellido">
+      </div>
+      <div class="form-group">
+        <label for="text">Direccion:</label>
+        <input type="text" formControlName="direccion" placeholder="Direccion" name="direccion" class="form-control" id="direccion">
+      </div>
+   <div class="form-group">
+        <label for="text">Telefono:</label>
+        <input type="text" formControlName="telefono" placeholder="Telefono" name="telefono" class="form-control" id="telefono">
+      </div>
 
-        <div class="form-group">
-            <label for="text">Direccion:</label>
-            <input type="text" formControlName="direccion" placeholder="direccion" name="direccion" class="form-control"
-                id="direccion">
-        </div>
+      <div class="form-group">
+        <label for="text">EPS:</label>
+        <input type="text" formControlName="eps" placeholder="EPS" name="eps" class="form-control" id="eps" disabled={true}>
+      </div>
+<div class="form-group">
+        <label for="username">Nombre Acompañante:</label>
+        <input type="text" formControlName="nombre_acom" placeholder="Nombre Acompañante" name="nombre_acom" class="form-control" id="nombre_acom">
+      </div>
 
-
-        <button class="btn btn-success">Editar</button>
+      <div class="form-group">
+        <label for="username">Telefono Acompañante:</label>
+        <input type="text" formControlName="telefono_acom" placeholder="Telefono Acompañante" name="telefono_acom" class="form-control" id="telefono_acom">
+      </div>
+      <button class="btn btn-success">Editar</button>
+      <br>
     </form>
-</div>
+  </div>
+        </main>
+      </div>
+    </div>
+    
+  </body>

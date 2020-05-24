@@ -28,13 +28,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="paciente/listar">
+                <a class="nav-link " href="paciente/listar">
                   <span data-feather="file"></span>
                   Pacientes
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="doctor/listar">
+                <a class="nav-link active" href="doctor/listar">
                   <span data-feather="shopping-cart"></span>
                   Doctores
                 </a>
@@ -57,7 +57,7 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Registrar Paciente</h1>
+            <h1 class="h2">Registrar Doctor</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-success" (click)="regresar()">Regresar</button>
@@ -87,32 +87,44 @@
         <label for="text">Direccion:</label>
         <input type="text" formControlName="direccion" placeholder="Direccion" name="direccion" class="form-control" id="direccion">
       </div>
-   <div class="form-group">
+        <div class="form-group">
         <label for="text">Telefono:</label>
         <input type="text" formControlName="telefono" placeholder="Telefono" name="telefono" class="form-control" id="telefono">
       </div>
     <div class="form-group">
-      <label for="exampleFormControlSelect1">EPS</label>
-    <select formControlName="eps" name="eps" class="form-control" id="eps">
+      <label for="exampleFormControlSelect1">Tipo de sangre</label>
+    <select formControlName="tipo_sangre" name="tipo_sangre" class="form-control" id="tipo_sangre">
+            <option value="" selected disabled hidden>SELECCIONE SU TIPO DE SANGRE</option>
      <option *ngFor="let o of options">
         {{o.name}}
      </option>
   </select>
   </div>
-<div class="form-group">
-        <label for="username">Nombre Acompañante:</label>
-        <input type="text" formControlName="nombre_acom" placeholder="Nombre Acompañante" name="nombre_acom" class="form-control" id="nombre_acom">
-      </div>
 
-      <div class="form-group">
-        <label for="username">Telefono Acompañante:</label>
-        <input type="text" formControlName="telefono_acom" placeholder="Telefono Acompañante" name="telefono_acom" class="form-control" id="telefono_acom">
+  <div class="form-group">
+      <label for="exampleFormControlSelect1">Hospital</label>
+   <select formControlName="id_hospital" name="id_hospital" class="form-control" id="id_hospital">
+      <option value="" selected disabled hidden>SELECCIONE HOSPITAL</option>
+     <option *ngFor="let h of hospitales" [ngValue]="h.value">
+        {{h.name}}
+     </option>
+  </select>
+  </div>
+<div class="form-group">
+  <label for="username" >Fecha de nacimiento: </label>
+    <input class="form-control" type="date" name="fecha_nacimiento" formControlName="fecha_nacimiento" id="fecha_nacimiento">
+</div>
+<div class="form-group">
+  <label for="example-email-input">Correo Electronico: </label>
+    <input class="form-control" type="email" id="correo" name="correo" formControlName="correo" placeholder="Correo Electronico">
+</div>
+<div class="form-group">
+        <label for="username">Años de Experiencia:</label>
+        <input type="number" formControlName="experiencia" placeholder="Años de Experiencia" name="experiencia" class="form-control" id="experiencia">
       </div>
       <button class="btn btn-success">Agregar</button>
     </form>
   </div>
-
-
         </main>
       </div>
     </div>

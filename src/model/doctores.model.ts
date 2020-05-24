@@ -1,5 +1,6 @@
-export class Pacientes {
-    constructor(
+export class Doctores {
+
+	 constructor(
         public id: string,
         public primer_nombre: string,
         public segundo_nombre: string,
@@ -7,10 +8,11 @@ export class Pacientes {
         public segundo_apellido: string,
         public direccion: string,
         public telefono: string,
-        public eps: string,
-        public nombre_acom: string,
-        public telefono_acom: string
+        public tipo_sangre: string,
+        public experiencia: string,
+        public fecha_nacimiento: string,
+        public id_hospital: string,
+        public correo: string,
            ) { }
-  
-}
 
+}
