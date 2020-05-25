@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,16 @@ import { HospitalComponent } from './hospital/hospital.component';
 import { AgregarDoctorComponent } from './doctor/agregar-doctor/agregar-doctor.component';
 import { EditarDoctorComponent } from './doctor/editar-doctor/editar-doctor.component';
 import { ListDoctorComponent } from './doctor/list-doctor/list-doctor.component';
+import { TriageComponent } from './triage/triage.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper'; 
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
 
+
+import { CUSTOM_ELEMENTS_SCHEMA }  from '@angular/core'; 
 
 @NgModule({
   declarations: [
@@ -27,16 +36,23 @@ import { ListDoctorComponent } from './doctor/list-doctor/list-doctor.component'
     HospitalComponent,
     AgregarDoctorComponent,
     EditarDoctorComponent,
-    ListDoctorComponent
+    ListDoctorComponent,
+    TriageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MatInputModule,
+    MatButtonModule,MatSelectModule,MatCardModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+
 })
 export class AppModule { }

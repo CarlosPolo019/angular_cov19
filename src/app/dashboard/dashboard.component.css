@@ -1,5 +1,22 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.example-card {
+  max-width: 350px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
 body {
-  font-size: .875rem;
+  font-size: initial;
 }
 
 .feather {

@@ -28,8 +28,10 @@ export class ListDoctorComponent implements OnInit {
 
   eliminar(doctor:Doctores):void {
    
-    this._doctorService.borrarDoctor(doctor.id)
-    .subscribe(data => {      
+    this._doctorService.borrarDoctor(doctor.id,doctor.usuario_id)
+    .subscribe(data => { 
+
+    alert(data["mensaje"]);
       this.ngOnInit();
     },err => {
     console.log(err);

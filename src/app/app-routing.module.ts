@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AgregarDoctorComponent } from './doctor/agregar-doctor/agregar-doctor.component';
 import { EditarDoctorComponent } from './doctor/editar-doctor/editar-doctor.component';
 import { ListDoctorComponent } from './doctor/list-doctor/list-doctor.component';
-
+import { TriageComponent } from './triage/triage.component';
 
 
 const routes: Routes = [
@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: "paciente/listar", component: ListPacienteComponent },
   { path: "paciente/agregar", component: AgregarPacienteComponent },
   { path: "paciente/editar", component: EditarPacienteComponent },
+  { path: "triage", component: TriageComponent },  
   { path: "dashboard", component: DashboardComponent },
   { path: "", component: LoginComponent },
   

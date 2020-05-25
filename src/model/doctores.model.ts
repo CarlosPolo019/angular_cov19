@@ -13,6 +13,7 @@ export class Doctores {
         public fecha_nacimiento: string,
         public id_hospital: string,
         public correo: string,
+        public usuario_id: string
            ) { }
 
 }

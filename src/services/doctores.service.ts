@@ -16,8 +16,8 @@ export class DoctoresApiService {
     return this.http.get<Doctores[]>('http://localhost/backend-angular/doctor/listardoctores.php')
   }
 
-  borrarDoctor(id:string) : Observable<DoctoresApiService>{
-    return this.http.get<DoctoresApiService>('http://localhost/backend-angular/doctor/eliminardoctor.php?id='+id);
+  borrarDoctor(id:string, usuario_id: string) : Observable<DoctoresApiService>{
+    return this.http.get<DoctoresApiService>('http://localhost/backend-angular/doctor/eliminardoctor.php?id='+id+'&usuario_id='+usuario_id);
   }
 
   crearDoctor(doctores:Doctores): Observable<DoctoresApiService>  {    

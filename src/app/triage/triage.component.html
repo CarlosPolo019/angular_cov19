@@ -1,0 +1,147 @@
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="dashboard/">SoftBiokernel</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Cerra Sesion</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link " href="dashboard/">
+                  <span data-feather="home"></span>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Hospital
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="paciente/listar">
+                  <span data-feather="file"></span>
+                  Pacientes
+                </a>
+              </li>
+             <li class="nav-item">
+                <a class="nav-link" href="doctor/listar">
+                  <span data-feather="shopping-cart"></span>
+                  Doctores
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="triage/">
+                  <span data-feather="bar-chart-2"></span>
+                  Triage
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Triage </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-success" >Regresar</button>
+              </div>
+            </div>
+          </div>
+
+     		<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Consulta</ng-template>
+ 
+<mat-form-field>
+  <mat-label>Seleccione Paciente</mat-label>
+  <mat-select formControlName="paciente" >
+    <mat-option *ngFor="let o of options"[value]="o.value">
+ {{o.name}}    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+      <h4></h4>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Motivos de la consulta</mat-label>
+    <textarea formControlName="consulta" matInput placeholder="Describa lo que le paciente le comenta..."></textarea>
+  </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+
+
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Sintomas COV19 </ng-template>
+       
+       <h4>Presenta alguno de estos sintomas?</h4>
+      <mat-form-field>
+  <mat-select formControlName="sintoma1" >
+    <mat-option *ngFor="let o of select1"[value]="o.value">
+ {{o.name}}    
+</mat-option>
+  </mat-select>
+</mat-form-field>
+       <h4></h4>
+
+    <mat-form-field>
+  <mat-select formControlName="sintoma2" >
+    <mat-option *ngFor="let o of select2"[value]="o.value">
+ {{o.name}}    
+</mat-option>
+  </mat-select>
+</mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
+
+ <mat-step [stepControl]="diagnosticoFormGroup" >
+ 	 <form [formGroup]="diagnosticoFormGroup">
+    <ng-template matStepLabel>Diagnostico</ng-template>
+     <mat-form-field class="example-full-width">
+    <textarea formControlName="diagnostico" matInput placeholder="Escriba su diagnostico..."></textarea>
+  </mat-form-field>
+
+  <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+
+          </form>
+
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Enviar</ng-template>
+    <p>Formulario completo, desean enviar esta informacion?</p>
+    <div>
+      <button mat-button matStepperPrevious>Regresar</button>
+      <button mat-button (click)="onSubmit()">Enviar</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+        </main>
+      </div>
+    </div>
+    
+  </body>
+

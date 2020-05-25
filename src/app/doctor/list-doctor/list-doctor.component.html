@@ -38,13 +38,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="users"></span>
-                  EPS
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="triage/">
                   <span data-feather="bar-chart-2"></span>
                   Triage
                 </a>
@@ -68,8 +62,12 @@
               <thead>
                  <tr>
                 <th>Id</th>
-                <th>nombre</th>
+                <th>Nombre</th>
                 <th>Telefono</th>
+                <th>Hospital</th>
+                <th>Tipo de Sangre</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Experiencia</th>                
                 <th>OPCIONES</th>        
       </tr>
               </thead>
@@ -78,6 +76,10 @@
         <td>{{doctor.id}}</td>
         <td>{{doctor.nombre}}</td>
         <td>{{doctor.telefono}}</td>
+        <td>{{doctor.hospital}}</td>
+        <td>{{doctor.tipo_sangre}}</td>
+        <td>{{doctor.fecha_nacimiento}}</td>
+        <td>{{doctor.experiencia}} Años</td>
         <td><button class="btn btn-success" (click)="eliminar(doctor)"> Delete</button>
           <button class="btn btn-success" (click)="editar(doctor)" style="margin-left: 20px;"> Edit</button></td>
       </tr>
