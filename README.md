@@ -1,38 +1,21 @@
-# AngularEjemploClase - Developed by Teacher Luis Reales Guerra - CUC (https://www.cuc.edu.co/)
+# Proyecto final - Desarrollado por el estudiante Carlos Escorcia
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+## Configura base de datos
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-## Configure database
-
-Crate the script in the database mySQL using a PhpMyAdmin
+Creamos nuestra base de datos, en este caso existe un script en la carpeta db_scripts donde se encuentran todas las tablas, procedimientos y funciones necesarias.
 
 ## Scripts PHP
 
-Create a folder in htdocs using XAMP for project PHP, configure file connectdb.php with the name of database
+2.  Iniciamos nuesto servidor local y procedemos a crear una carpeta llamda backend-angular, copiamos los archivos que estan en la carpeta php_scripts_crud (Esta se encuentra dentro del proyecto de angular). Esta carpeta debe ser creeda en nuestra carpeta www o htdocs.
 
-<!-- Developed by Teacher Luis Reales  - CUC - 2020 -->
+## Ejecutar proyecto
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# angular_cov19
+3.  Procedemos a instalar todas las dependencias de nuestro proyecto en angular con el comando `npm install`, debe tener abierto el terminal en la ruta del proyecto.
+
+4.  Ejecutamos el comando `ng server --open` y listo.
+
+
+# Ingresar a la plataforma 
+
+correo: admin@admin.com
+contraseña: 1234
