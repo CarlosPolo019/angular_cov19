@@ -19,8 +19,8 @@ export class DashboardComponent implements OnInit {
  
 
   ngOnInit(): void {
-    this.getConsultas(11);
-  	this.nombre = "Carlos";
+    this.getConsultas(window.localStorage.getItem("id_doctor"));
+  	this.nombre = window.localStorage.getItem("nombre_doctor");
 
   }
 

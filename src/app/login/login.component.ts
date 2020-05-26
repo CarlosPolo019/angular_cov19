@@ -38,10 +38,14 @@ export class LoginComponent implements OnInit {
    this.apiService.loggearAdministrador(this.registerForm.value)
     .subscribe( data => {console.log(data);
     
+      window.localStorage.setItem("id_doctor", data.id.toString());
+      window.localStorage.setItem("nombre_doctor", data.nombre);
+
+            
       this.router.navigate(['dashboard/']);
   }, err => {
     console.log(err);
-    this.errorMessage = err.message;
+    this.errorMessage = err.statusText;
     this.successMessage = "";
   })
 

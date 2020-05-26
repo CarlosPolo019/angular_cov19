@@ -19,12 +19,7 @@
                   Dashboard <span class="sr-only">(current)</span>
                 </a>
               </li>
-               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Hospital
-                </a>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link " href="paciente/listar">
                   <span data-feather="file"></span>
@@ -128,6 +123,23 @@
           </form>
 
   </mat-step>
+
+   <mat-step [stepControl]="medicamentosFormGroup" optional="true">
+   <form [formGroup]="medicamentosFormGroup">
+    <ng-template matStepLabel>Medicamentos</ng-template>
+     <mat-form-field class="example-full-width">
+    <textarea formControlName="medicamentos" matInput placeholder="Escriba los medicamentos..."></textarea>
+  </mat-form-field>
+
+  <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button matStepperNext>Siguiente</button>
+      </div>
+
+          </form>
+
+  </mat-step>
+
 
   <mat-step>
     <ng-template matStepLabel>Enviar</ng-template>

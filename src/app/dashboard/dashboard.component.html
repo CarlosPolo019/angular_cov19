@@ -19,12 +19,6 @@
                   Dashboard <span class="sr-only">(current)</span>
                 </a>
               </li>
-                  <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Hospital
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="paciente/listar">
                   <span data-feather="file"></span>
@@ -32,7 +26,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="doctor/listar">
                   <span data-feather="shopping-cart"></span>
                   Doctores
                 </a>
@@ -59,7 +53,7 @@
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Paciente : {{triage.id_paciente}}</mat-card-title>
     <mat-card-subtitle>Doctor: {{triage.id_doctor}}</mat-card-subtitle>
-    <mat-card-subtitle>COV19: {{triage.resultado_cov}}</mat-card-subtitle>
+    <mat-card-subtitle>Posible caso de COV19 : {{triage.resultado_cov}}</mat-card-subtitle>
 
   </mat-card-header>
   <mat-card-content>
@@ -71,11 +65,10 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>MODIFICAR</button>
-    <button mat-button>ELIMINAR</button>
+    <button disabled mat-button>MODIFICAR</button>
+    <button  disabled mat-button>ELIMINAR</button>
   </mat-card-actions>
 </mat-card>
-
 
   </div>
 
