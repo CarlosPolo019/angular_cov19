@@ -1,5 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import * as Chartist from 'chartist';
+import {
+    Component,
+    OnInit,
+    Inject
+} from '@angular/core';
+import {
+    Router
+} from '@angular/router';
+import Axios from 'axios';
+import * as Api from "../../constants/api";
+import {
+    FormBuilder,
+    Validators,
+    FormGroup
+} from "@angular/forms";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,143 +21,125 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-  startAnimationForLineChart(chart){
-      let seq: any, delays: any, durations: any;
-      seq = 0;
-      delays = 80;
-      durations = 500;
-
-      chart.on('draw', function(data) {
-        if(data.type === 'line' || data.type === 'area') {
-          data.element.animate({
-            d: {
-              begin: 600,
-              dur: 700,
-              from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-              to: data.path.clone().stringify(),
-              easing: Chartist.Svg.Easing.easeOutQuint
-            }
-          });
-        } else if(data.type === 'point') {
-              seq++;
-              data.element.animate({
-                opacity: {
-                  begin: seq * delays,
-                  dur: durations,
-                  from: 0,
-                  to: 1,
-                  easing: 'ease'
-                }
-              });
-          }
-      });
-
-      seq = 0;
-  };
-  startAnimationForBarChart(chart){
-      let seq2: any, delays2: any, durations2: any;
-
-      seq2 = 0;
-      delays2 = 80;
-      durations2 = 500;
-      chart.on('draw', function(data) {
-        if(data.type === 'bar'){
-            seq2++;
-            data.element.animate({
-              opacity: {
-                begin: seq2 * delays2,
-                dur: durations2,
-                from: 0,
-                to: 1,
-                easing: 'ease'
-              }
-            });
+    nombre_vista = "Hospital";  
+   addForm: FormGroup;
+    isBoolean = true;
+    isCreate = false;
+    valueFrom : [];
+    hospitales: [];
+    options = [
+        {
+            name: "SURA",
+            value: 1
+        },
+        {
+            name: "COOMEVA",
+            value: 2
+        },
+        {
+            name: "SUSALUD",
+            value: 1
+        },
+        {
+            name: "CAFESALUD",
+            value: 2
+        },
+        {
+            name: "VIVA1A",
+            value: 2
         }
-      });
+    ];
+    constructor(private formBuilder: FormBuilder, private router: Router) {}
 
-      seq2 = 0;
-  };
-  ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
-      const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-          series: [
-              [12, 17, 7, 17, 23, 18, 38]
-          ]
-      };
+    ngOnInit(): void {
 
-     const optionsDailySalesChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
+        this._cargarInfo()
+        this.addForm = this.formBuilder.group({
+            id: [],
+            nombre: ['', Validators.required],
+            direccion: ['', Validators.required],
+            nombre_propietario: ['', Validators.required],
+            nit: ['', Validators.required],
+            telefono: ['', Validators.required]
+        });
+
+    }
+// Una de las razones por las que se introdujo async/await era 
+// para evitar el conocido “callback hell” en el que las funciones 
+// se anidaban varios niveles. Esto sucede muy comúnmente cuando el 
+// resultado de una función requiere de posteriores consultas y validaciones.
+// En este caso sino se crea la funcion asincrona, no fuera posible refreschar 
+// EL array sin primero actualizar la pagina
+    async onSave(form) {
+
+const axiosInstance = Axios.create(Api.AXIOS_CONF);
+var url = ""
+      if(this.isBoolean){
+        url = '/phpweb/insertarHospital.php';
+        console.log("Agregar")
+      }else{
+        url = '/phpweb/editarHospital.php';
+        console.log("Editar")
       }
+       
+            await axiosInstance.post(url, {
+                    data: form
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(function(response) {
+                  
+                    jQuery("#exampleModal .close").click()
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-      this.startAnimationForLineChart(dailySalesChart);
-
-
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
-
-      const dataCompletedTasksChart: any = {
-          labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-          series: [
-              [230, 750, 450, 300, 280, 240, 200, 190]
-          ]
-      };
-
-     const optionsCompletedTasksChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-      }
-
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      this.startAnimationForLineChart(completedTasksChart);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+            this.ngOnInit();
+    }
 
 
+    _cargarInfo() {
+        const axiosInstance = Axios.create(Api.AXIOS_CONF);
+        axiosInstance.get("/phpweb/listarHospital.php").then((response) => {
+            console.log(response.data)
+            this.hospitales = response.data
+            if(this.hospitales.length < 1){
 
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+              this.isCreate = false
 
-      var datawebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+            }else{
 
-        ]
-      };
-      var optionswebsiteViewsChart = {
-          axisX: {
-              showGrid: false
-          },
-          low: 0,
-          high: 1000,
-          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-      };
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
+              this.isCreate = true
+
             }
-          }
-        }]
-      ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
-      //start animation for the Emails Subscription Chart
-      this.startAnimationForBarChart(websiteViewsChart);
-  }
+        });
+    }
+
+   async eliminar(id) {
+
+ const axiosInstance = Axios.create(Api.AXIOS_CONF);
+       await axiosInstance.get("/phpweb/EliminarHospital.php?id="+id).then((response) => {
+            console.log(response.data)
+        });
+
+        this.ngOnInit();
+
+    }
+
+
+async cargarDetallehospital(id){
+
+ const axiosInstance = Axios.create(Api.AXIOS_CONF);
+   await axiosInstance.get("/phpweb/detalleHospital.php?id="+id.toString()).then((response) => {
+            console.log(response.data)
+            this.addForm.setValue(response.data)
+        });
+
+}
 
 }

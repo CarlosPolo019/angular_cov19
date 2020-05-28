@@ -7,10 +7,46 @@
                         <h3 class="card-title" style="text-align: left; font-size: 35px;">
                               <small>Pacientes</small>
                         </h3>
+                         <th><button type="button" class="btn btn-primary" data-toggle="modal" (click)="isBoolean=true;addForm.reset()" data-target="#exampleModal">
+                    Crear
+                    </button></th> 
+
+                                          <!-- Button trigger modal -->
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                          <p class="card-category" style="font-size:15px">Agrega, edita, elimina aquí los pacientes</p>
+                           <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                 <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>EPS</th>    
+                <th>Nombre acompañante</th>
+                <th>Telefono acompañante</th>
+                <th>Historial medico</th>
+                <th>Detalles</th>
+                <th>Opciones</th>        
+      </tr>
+              </thead>
+              <tbody>
+               <tr *ngFor="let paciente of pacientes">
+        <td>{{paciente.id}}</td>
+        <td>{{paciente.nombre_paciente}}</td>
+        <td>{{paciente.direccion_paciente}}</td>
+        <td>{{paciente.eps}}</td>
+        <td>{{paciente.nombre_acompanante}}</td>
+        <td>{{paciente.celular_acompanante}}</td>
+        <td>{{paciente.historial_medico}}</td>
+        <td>{{paciente.detalle_historial}}</td>
+        <td><button class="btn btn-danger" (click)="eliminar(paciente.id)"> 
+        Eliminar</button>
+          <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" (click)="cargarDetallePaciente(paciente.id);isBoolean=false"> Modificar</button></td>
+      </tr>
+              </tbody>
+            </table>
+          </div>
                         </div>
                     </div>
                 </div>
@@ -18,3 +54,55 @@
         </div>
     </div>
   </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          
+        {{isBoolean ? 'Crear paciente' : 'Editar paciente'}}
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+    <form [formGroup]="addForm" >
+      <div class="form-group">
+        <input type="text" formControlName="nombre_completo" placeholder="Nombre Completo" name="nombre_completo" class="form-control" id="nombre_completo" required>
+
+      </div>
+   <div class="form-group">
+        <input type="text" formControlName="direccion" placeholder="Direccion" name="direccion" class="form-control" id="direccion" required>
+      </div>
+    <div class="form-group">
+    <select formControlName="eps" name="eps" class="form-control" id="eps" required>
+        <option hidden selected>Selecciona una opción</option>
+     <option *ngFor="let o of options">
+        {{o.name}}
+     </option>
+  </select>
+  </div>
+<div class="form-group">
+        <input type="text" formControlName="nombre_acom" placeholder="Nombre Acompañante" name="nombre_acom" class="form-control" id="nombre_acom">
+      </div>
+
+      <div class="form-group">
+        <input type="text" formControlName="telefono_acom" placeholder="Telefono Acompañante" name="telefono_acom" class="form-control" id="telefono_acom" >
+      </div>
+
+    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" type="submit" (click)="onSave(this.addForm.value)" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
