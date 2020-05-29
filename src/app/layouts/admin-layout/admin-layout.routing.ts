@@ -56,5 +56,4 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'doctores',   component: UserProfileComponent },
     { path: 'pacientes',     component: TableListComponent },
     { path: 'triage',     component: TypographyComponent },
-    { path: 'posible-caso',          component: IconsComponent },
 ];
